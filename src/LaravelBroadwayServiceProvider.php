@@ -19,6 +19,16 @@ class LaravelBroadwayServiceProvider extends ServiceProvider
     }
 
     /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+    }
+
+    /**
      * Register the configuration file so Laravel can publish them
      * Also merges the published config file with original
      */
