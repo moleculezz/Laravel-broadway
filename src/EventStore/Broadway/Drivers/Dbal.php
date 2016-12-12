@@ -1,6 +1,7 @@
 <?php namespace Nwidart\LaravelBroadway\EventStore\Broadway\Drivers;
 
 use Broadway\EventStore\DBALEventStore;
+use Broadway\UuidGenerator\Converter\BinaryUuidConverter;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
 use Nwidart\LaravelBroadway\EventStore\Driver;
@@ -36,7 +37,7 @@ class Dbal implements Driver
             return $connection;
         });
 
-        return new DBALEventStore($connection, $payloadSerializer, $metadataSerializer, $table, false);
+        return new DBALEventStore($connection, $payloadSerializer, $metadataSerializer, $table, false, new BinaryUuidConverter());
     }
 
     /**
